@@ -1,12 +1,16 @@
-import {Component, ChangeDetectorRef, OnInit} from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem
+} from '@angular/cdk/drag-drop';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
-interface Group  {
+interface Group {
   id: string;
   tasks: Task[];
 }
 
-interface Task  {
+interface Task {
   id: string;
 }
 
@@ -16,15 +20,13 @@ interface Task  {
 @Component({
   selector: 'cdk-drag-drop-connected-sorting-example',
   templateUrl: 'cdk-drag-drop-connected-sorting-example.html',
-  styleUrls: ['cdk-drag-drop-connected-sorting-example.css'],
+  styleUrls: ['cdk-drag-drop-connected-sorting-example.css']
 })
 export class CdkDragDropConnectedSortingExample implements OnInit {
-  groupId =0;
+  groupId = 0;
   taskId = 0;
 
-  groups: Group[] = [
-    
-  ];
+  groups: Group[] = [];
 
   trackById = item => item.id;
 
@@ -34,9 +36,7 @@ export class CdkDragDropConnectedSortingExample implements OnInit {
     clientRect: ClientRect;
   }[];
 
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-    
-  }
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.fillGroups();
@@ -44,31 +44,31 @@ export class CdkDragDropConnectedSortingExample implements OnInit {
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     }
   }
 
   fillGroups() {
     if (this.groups.length === 0) {
-      this.groups.push(
-        this.generateGroup(10)
-      );
-      this.groups.push(
-        this.generateGroup(5)
-      ); 
+      this.groups.push(this.generateGroup(10));
+      this.groups.push(this.generateGroup(5));
     } else {
       this.groups[this.groups.length - 1].tasks = [
         ...this.groups[this.groups.length - 1].tasks,
         ...this.generateTasks(5)
       ];
-      this.groups.push(
-        this.generateGroup(5)
-      ); 
+      this.groups.push(this.generateGroup(5));
     }
     this.changeDetectorRef.detectChanges();
     // console.log('groups', this.groups);
@@ -84,10 +84,11 @@ export class CdkDragDropConnectedSortingExample implements OnInit {
   }
 
   generateTasks(count: number) {
-    const tasks = Array(count).fill(0).map(_ => this.generateTask());
+    const tasks = Array(count)
+      .fill(0)
+      .map(_ => this.generateTask());
     // console.log(tasks);
     return tasks;
-    
   }
 
   generateGroup(taskCount: number) {
@@ -95,7 +96,7 @@ export class CdkDragDropConnectedSortingExample implements OnInit {
     return {
       id: String(this.groupId),
       tasks: this.generateTasks(taskCount)
-    }
+    };
   }
 
   reset() {

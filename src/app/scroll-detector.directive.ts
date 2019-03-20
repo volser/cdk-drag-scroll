@@ -1,22 +1,20 @@
-import { fromEvent as observableFromEvent, Subject } from 'rxjs';
-
-import { sampleTime, takeUntil } from 'rxjs/operators';
 import {
+  AfterViewInit,
   Directive,
   ElementRef,
-  Input,
-  Output,
   EventEmitter,
+  Input,
   NgZone,
-  AfterViewInit,
-  OnDestroy
+  OnDestroy,
+  Output
 } from '@angular/core';
+import { fromEvent as observableFromEvent, Subject } from 'rxjs';
+import { sampleTime, takeUntil } from 'rxjs/operators';
 
 @Directive({
   selector: '[appScrollDetector]'
 })
-export class ScrollDetectorDirective  implements AfterViewInit, OnDestroy {
-
+export class ScrollDetectorDirective implements AfterViewInit, OnDestroy {
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   @Input('offsetTop') offsetTop = 0;

@@ -1,20 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter, 
-ChangeDetectionStrategy, ChangeDetectorRef, NgZone,
-OnChanges } from '@angular/core';
-
 import {
-  CdkDragDrop,
+  CdkDrag,
+  CdkDragEnd,
   CdkDragEnter,
   CdkDragExit,
-  CdkDropList,
-  CdkDragStart,
-  CdkDragEnd,
-  DropListRef,
-  CdkDrag
+  CdkDragStart
 } from '@angular/cdk/drag-drop';
-import { takeWhile, debounceTime, sampleTime, filter } from 'rxjs/operators';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  NgZone,
+  OnInit,
+  Output
+} from '@angular/core';
+import { debounceTime, takeWhile } from 'rxjs/operators';
+
 import { AutoScroll } from '../auto-scroll';
-import { fromEvent, timer  } from 'rxjs';
 
 let activeDropContainer;
 
@@ -25,7 +28,6 @@ let activeDropContainer;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MyListComponent implements OnInit {
-
   @Input() items: any[];
   @Input() scrollContainer: HTMLElement;
 
@@ -38,15 +40,17 @@ export class MyListComponent implements OnInit {
   autoScroll: AutoScroll;
   activeDrag: CdkDrag;
 
-  constructor(private changeDetectorRef: ChangeDetectorRef, private zone: NgZone) { }
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    private zone: NgZone
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   dragExited(event: CdkDragExit) {
     const dropListRef: any = event.container._dropListRef;
     // https://github.com/angular/material2/issues/15227
-    setTimeout(()=>{
+    setTimeout(() => {
       dropListRef._cacheOwnPosition();
       this.drawRects();
     });
@@ -55,7 +59,7 @@ export class MyListComponent implements OnInit {
   dragEntered(event: CdkDragEnter) {
     const dropListRef: any = event.container._dropListRef;
     // https://github.com/angular/material2/issues/15227
-    setTimeout(()=>{
+    setTimeout(() => {
       dropListRef._cacheOwnPosition();
       this.drawRects();
     });
@@ -88,7 +92,10 @@ export class MyListComponent implements OnInit {
               // adjust items
               this.adjustItems(x, y);
               // ToDo: better condition for changed items
-              if (dropListRef._draggables.length > dropListRef._itemPositions.length) {
+              if (
+                dropListRef._draggables.length >
+                dropListRef._itemPositions.length
+              ) {
                 this.syncItems();
               }
 
@@ -106,7 +113,6 @@ export class MyListComponent implements OnInit {
           .subscribe(e => {
             this.autoScroll.onMove(e.pointerPosition);
           });
-
       });
     }
   }
@@ -131,7 +137,7 @@ export class MyListComponent implements OnInit {
       return;
     }
     const dropListRef: any = activeDropContainer._dropListRef;
-    
+
     /*dropListRef._activeDraggables = dropListRef._draggables.slice();
     dropListRef._activeDraggables.push(this.activeDrag._dragRef);
     dropListRef._cacheItemPositions();*/
@@ -149,7 +155,6 @@ export class MyListComponent implements OnInit {
       }
     });
     dropListRef._activeDraggables.push(this.activeDrag._dragRef);
-
   }
 
   adjustContainers() {
@@ -162,7 +167,6 @@ export class MyListComponent implements OnInit {
     dropListRef._siblings.forEach(sibling => {
       sibling._cacheOwnPosition();
     });
-
   }
 
   adjustItems(deltaX: number, deltaY: number) {
@@ -184,15 +188,13 @@ export class MyListComponent implements OnInit {
       return;
     }
     const dropListRef: any = activeDropContainer._dropListRef;
-    const draws = [ 
-                ...dropListRef.
-                _itemPositions.
-                map(it => ({
-                  clientRect: it.clientRect,
-                  color: 'blue',
-                  id: it.drag.data.data.id
-                })),
-                /*...dropContainer.
+    const draws = [
+      ...dropListRef._itemPositions.map(it => ({
+        clientRect: it.clientRect,
+        color: 'blue',
+        id: it.drag.data.data.id
+      })),
+      /*...dropContainer.
                 _dropListRef.
                 _itemPositions.
                 map(it => ({
@@ -200,20 +202,18 @@ export class MyListComponent implements OnInit {
                   color: 'green',
                   id: it.drag.data.data.id
                 }))*/
-                ...dropListRef._siblings
-                .map(it => ({
-                  clientRect: it._clientRect,
-                  color: 'green',
-                  id: ''
-                })),
-                {
-                  clientRect: dropListRef._clientRect,
-                  color: '#2FD1BB',
-                  id: ''
-                }
-              ];
+      ...dropListRef._siblings.map(it => ({
+        clientRect: it._clientRect,
+        color: 'green',
+        id: ''
+      })),
+      {
+        clientRect: dropListRef._clientRect,
+        color: '#2FD1BB',
+        id: ''
+      }
+    ];
 
-              this.onDraw.emit(draws);
+    this.onDraw.emit(draws);
   }
-
 }
