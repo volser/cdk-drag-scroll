@@ -9,6 +9,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importHelpers": true,
     "target": "es5",
     "typeRoots": [
       "node_modules/@types"
@@ -17,10 +18,13 @@
       "es2018",
       "dom"
     ],
-	"paths": {
-      "core-js/es7/reflect": [
-        "node_modules/core-js/proposals/reflect-metadata"
+    "paths": {
+      "cdk-drag-scroll": [
+        "dist/cdk-drag-scroll"
+      ],
+      "cdk-drag-scroll/*": [
+        "dist/cdk-drag-scroll/*"
       ]
     }
   }
-  }
+}

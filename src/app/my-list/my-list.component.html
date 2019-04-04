@@ -1,0 +1,14 @@
+<div
+    cdkDropList
+    [cdkDropListData]="items"
+    class="example-list"
+    (cdkDropListDropped)="onDrop.emit($event)"
+    >
+    <div
+      class="example-box" 
+      *ngFor="let item of items; trackBy: trackById;"
+      cdkDrag
+      vsDragScroll
+      [cdkDragData]="item"
+      >{{item?.id}}</div>
+  </div>

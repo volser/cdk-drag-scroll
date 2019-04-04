@@ -1,0 +1,43 @@
+<div>
+
+  <button (click)="reset()">Reset</button>
+
+
+  <div 
+    #scrollContainer
+    cdkDropListGroup
+    appScrollDetector
+    offsetBottom="30"
+    (onReachBottom)="fillGroups()"
+    class="example-scroll">
+
+
+    <div class="example-container"
+      *ngFor="let group of groups; trackBy: trackById;"
+    >
+    
+      <h2>{{group.id}}</h2>
+
+      <app-my-list
+        [items]="group.tasks"
+        [scrollContainer]="scrollContainer"
+        (onDrop)="drop($event)"
+        >
+      </app-my-list>
+    </div>
+
+  </div>
+
+
+
+  <div
+    class="draw"
+    [style.left]="draw.clientRect.left + 'px'"
+    [style.top]="draw.clientRect.top + 'px'"
+    [style.width]="draw.clientRect.width + 'px'"
+    [style.height]="draw.clientRect.height + 'px'"
+    [style.border-color]="draw.color"
+    *ngFor="let draw of (dragDebugService.debugInfo | async)">
+    {{draw.id}}
+  </div>
+<div>
