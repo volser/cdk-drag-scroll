@@ -14,15 +14,12 @@ interface Task {
   id: string;
 }
 
-/**
- * @title Drag&Drop connected sorting
- */
 @Component({
-  selector: 'cdk-drag-drop-connected-sorting-example',
-  templateUrl: 'cdk-drag-drop-connected-sorting-example.html',
-  styleUrls: ['cdk-drag-drop-connected-sorting-example.css']
+  selector: 'vlDemo',
+  templateUrl: 'demo.component.html',
+  styleUrls: ['demo.component.css']
 })
-export class CdkDragDropConnectedSortingExample implements OnInit {
+export class DemoComponent implements OnInit {
   groupId = 0;
   taskId = 0;
 

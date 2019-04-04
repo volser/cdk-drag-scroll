@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.json",
+  "files": [
+    "src/drag-scroll.directive.ts",
+    "src/drag-debug.service.ts",
+    "src/drag-scroll.module.ts"
+  ]
+}
