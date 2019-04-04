@@ -9,7 +9,7 @@ export class AutoScroll {
 
   constructor(
     private container: HTMLElement,
-    private scrollCallback: ScrollCallback
+    private scrollCallback?: ScrollCallback
   ) {
     this.boundaryRect = this.container.getBoundingClientRect();
   }
@@ -78,27 +78,21 @@ export class AutoScroll {
   }
 
   scrollY(amount: number) {
-    /*if (this.container === window) {
-      window.scrollTo(window.pageXOffset, window.pageYOffset + amount);
-    } else {
-      this.container.scrollTop += amount;
-    }*/
-    const oldScrollTop = this.container.scrollTop;
+    // ToDo for window: window.scrollTo(window.pageXOffset, window.pageYOffset + amount);
     this.container.scrollTop += amount;
     if (this.scrollCallback) {
-      this.scrollCallback({ x: 0, y: this.container.scrollTop - oldScrollTop });
+      this.scrollCallback({ x: 0, y: amount });
     }
   }
 
   scrollX(amount) {
-    /*if (this.container === window) {
-      window.scrollTo(window.pageXOffset + amount, window.pageYOffset);
-    } else {
-      this.container.scrollLeft += amount;
-    }*/
+    // ToDo for window: window.scrollTo(window.pageXOffset + amount, window.pageYOffset);
     this.container.scrollLeft += amount;
     if (this.scrollCallback) {
-      this.scrollCallback({ x: amount, y: 0 });
+      this.scrollCallback({
+        x: amount,
+        y: 0
+      });
     }
   }
 

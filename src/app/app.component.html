@@ -21,8 +21,7 @@
       <app-my-list
         [items]="group.tasks"
         [scrollContainer]="scrollContainer"
-        (onDraw)="drawRect($event)"
-        (onDrop)="drop($event)">
+        (onDrop)="drop($event)"
         >
       </app-my-list>
     </div>
@@ -38,7 +37,7 @@
     [style.width]="draw.clientRect.width + 'px'"
     [style.height]="draw.clientRect.height + 'px'"
     [style.border-color]="draw.color"
-    *ngFor="let draw of draws">
+    *ngFor="let draw of (dragDebugService.debugInfo | async)">
     {{draw.id}}
   </div>
 <div>

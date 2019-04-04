@@ -4,6 +4,7 @@ import {
   transferArrayItem
 } from '@angular/cdk/drag-drop';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { DragDebugService } from 'cdk-drag-scroll';
 
 interface Group {
   id: string;
@@ -14,15 +15,12 @@ interface Task {
   id: string;
 }
 
-/**
- * @title Drag&Drop connected sorting
- */
 @Component({
-  selector: 'cdk-drag-drop-connected-sorting-example',
-  templateUrl: 'cdk-drag-drop-connected-sorting-example.html',
-  styleUrls: ['cdk-drag-drop-connected-sorting-example.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class CdkDragDropConnectedSortingExample implements OnInit {
+export class AppComponent implements OnInit {
   groupId = 0;
   taskId = 0;
 
@@ -30,13 +28,12 @@ export class CdkDragDropConnectedSortingExample implements OnInit {
 
   trackById = item => item.id;
 
-  draws: {
-    id: string;
-    color: string;
-    clientRect: ClientRect;
-  }[];
-
-  constructor(private changeDetectorRef: ChangeDetectorRef) {}
+  constructor(
+    private changeDetectorRef: ChangeDetectorRef,
+    public dragDebugService: DragDebugService
+  ) {
+    this.dragDebugService.enabled = true;
+  }
 
   ngOnInit() {
     this.fillGroups();
@@ -104,12 +101,6 @@ export class CdkDragDropConnectedSortingExample implements OnInit {
     this.taskId = 0;
     this.groups = [];
     this.fillGroups();
-    this.draws = [];
-  }
-
-  drawRect(event) {
-    this.draws = event;
-    //console.log('draw', this.draws);
-    this.changeDetectorRef.markForCheck();
+    this.dragDebugService.reset();
   }
 }
