@@ -20,10 +20,10 @@
     ],
     "paths": {
       "cdk-drag-scroll": [
-        "dist/cdk-drag-scroll"
+        "projects/cdk-drag-scroll/src/public_api"
       ],
       "cdk-drag-scroll/*": [
-        "dist/cdk-drag-scroll/*"
+        "projects/cdk-drag-scroll/src/public_api/*"
       ]
     }
   }
