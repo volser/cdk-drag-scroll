@@ -9,6 +9,7 @@
       *ngFor="let item of items; trackBy: trackById;"
       cdkDrag
       vsDragScroll
+      [vsDragScrollContainer]="scrollContainer"
       [cdkDragData]="item"
       >{{item?.id}}</div>
   </div>
