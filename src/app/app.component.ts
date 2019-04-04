@@ -101,6 +101,6 @@ export class AppComponent implements OnInit {
     this.taskId = 0;
     this.groups = [];
     this.fillGroups();
-    this.dragDebugService.log([]);
+    this.dragDebugService.reset();
   }
 }

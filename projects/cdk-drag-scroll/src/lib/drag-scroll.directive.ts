@@ -125,6 +125,7 @@ export class DragScrollDirective<T = any> implements OnDestroy, OnChanges {
   ended() {
     this.destroyAutoScroll();
     this.stopDragging$.next();
+    this.dragDebugService.reset();
   }
 
   entered() {

@@ -13,4 +13,8 @@ export class DragDebugService {
   log(info: any[]) {
     this.debugInfo.next(info);
   }
+
+  reset() {
+    this.debugInfo.next(null);
+  }
 }
