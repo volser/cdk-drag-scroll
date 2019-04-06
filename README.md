@@ -1,3 +1,9 @@
+# Cdk Drag Scroll
+
+## Demo
+
+https://cdk-drag-scroll-demo.stackblitz.io/
+
 ## Installation
 
 Install through npm:
