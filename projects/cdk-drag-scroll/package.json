@@ -3,11 +3,11 @@
   "version": "0.0.6",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/volser/cdk-drag-scroll.git"
+    "url": "git+https://github.com/cactusoft-ca/cdk-drag-scroll.git"
   },
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",
-    "@angular/cdk": "^8.0.0"
+    "@angular/cdk": "^9.1.3"
   }
 }
