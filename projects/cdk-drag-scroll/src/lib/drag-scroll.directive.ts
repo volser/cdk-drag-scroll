@@ -194,7 +194,7 @@ export class DragScrollDirective<T = any> implements OnDestroy, OnChanges {
     // https://github.com/angular/material2/issues/15227
     setTimeout(() => {
       const dropListRef: any = this.getDropListRef();
-      dropListRef._cacheItemPositions();
+      dropListRef._cacheParentPositions();
       this.addDebugInfo();
     });
 
@@ -229,10 +229,7 @@ export class DragScrollDirective<T = any> implements OnDestroy, OnChanges {
 
   private adjustContainers() {
     const dropListRef: any = this.getDropListRef();
-    dropListRef._cacheItemPositions();
-    // dropListRef._siblings.forEach(sibling => {
-      // sibling._cacheOwnPosition();
-    // });
+    dropListRef._cacheParentPositions();
   }
 
   private adjustItems(deltaX: number, deltaY: number) {
