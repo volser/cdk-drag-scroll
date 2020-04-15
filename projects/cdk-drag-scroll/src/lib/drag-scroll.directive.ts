@@ -1,4 +1,4 @@
-import { CdkDrag, DragRef } from '@angular/cdk/drag-drop';
+import { CdkDrag, DragRef, DropListRef } from '@angular/cdk/drag-drop';
 import {
   Directive,
   OnDestroy,
@@ -160,7 +160,7 @@ export class DragScrollDirective<T = any> implements OnDestroy, OnChanges {
     }
   }
 
-  private getDropListRef() {
+  private getDropListRef(): DropListRef {
     return this.dragRef['_dropContainer'];
   }
 
@@ -194,7 +194,7 @@ export class DragScrollDirective<T = any> implements OnDestroy, OnChanges {
     // https://github.com/angular/material2/issues/15227
     setTimeout(() => {
       const dropListRef: any = this.getDropListRef();
-      dropListRef._cacheOwnPosition();
+      dropListRef._cacheParentPositions();
       this.addDebugInfo();
     });
 
@@ -229,11 +229,7 @@ export class DragScrollDirective<T = any> implements OnDestroy, OnChanges {
 
   private adjustContainers() {
     const dropListRef: any = this.getDropListRef();
-
-    dropListRef._cacheOwnPosition();
-    dropListRef._siblings.forEach(sibling => {
-      sibling._cacheOwnPosition();
-    });
+    dropListRef._cacheParentPositions();
   }
 
   private adjustItems(deltaX: number, deltaY: number) {
