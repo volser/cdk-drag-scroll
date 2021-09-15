@@ -5,6 +5,9 @@
     "type": "git",
     "url": "git+https://github.com/cactusoft-ca/cdk-drag-scroll.git"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
   "peerDependencies": {
     "@angular/common": "^9.0.7",
     "@angular/core": "^9.0.7",
