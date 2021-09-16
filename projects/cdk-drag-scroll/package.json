@@ -1,13 +1,19 @@
 {
-  "name": "cdk-drag-scroll",
-  "version": "1.0.6",
+  "name": "@cactusoft-ca/cdk-drag-scroll",
+  "version": "0.0.7",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cactusoft-ca/cdk-drag-scroll.git"
   },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "peerDependencies": {
-    "@angular/common": "^12.2.5",
-    "@angular/core": "^12.2.5",
-    "@angular/cdk": "^12.2.5"
+    "@angular/common": "^12.0.0",
+    "@angular/core": "^12.0.0",
+    "@angular/cdk": "^12.0.0"
   }
 }
