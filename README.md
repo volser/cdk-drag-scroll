@@ -34,6 +34,7 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## To publish npm package
 
+- The version in the package.json in the project folder must be incremented
 - On github, in Settings -> Developer settings -> Personal Access Tokens. Generate a new token with the privileges to write:packages.
 
 - Run command with your username, token and email.
@@ -46,7 +47,7 @@ In the project folder, run
 ng build cdk-drag-scroll --configuration production
 ```
 
-Finally, run from the dist//<project-name>
+Finally, run from the dist/<project-name>
 ```
 npm publish
 ```
