@@ -46,7 +46,7 @@ In the project folder, run
 ng build cdk-drag-scroll --configuration production
 ```
 
-Finally, run
+Finally, run from the dist//<project-name>
 ```
 npm publish
 ```
