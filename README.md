@@ -39,13 +39,11 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 - Run command with your username, token and email.
 ```
 npm login --scope=@cactusoft-ca --registry=https://npm.pkg.github.com
-
 ```
 
 In the project folder, run
 ```
 ng build cdk-drag-scroll --configuration production
-
 ```
 
 Finally, run
