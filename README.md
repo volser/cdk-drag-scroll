@@ -31,3 +31,24 @@ Then use it in your app like so:
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+## To publish npm package
+
+- On github, in Settings -> Developer settings -> Personal Access Tokens. Generate a new token with the privileges to write:packages.
+
+- Run command with your username, token and email.
+```
+npm login --scope=@cactusoft-ca --registry=https://npm.pkg.github.com
+
+```
+
+In the project folder, run
+```
+ng build cdk-drag-scroll --configuration production
+
+```
+
+Finally, run
+```
+npm publish
+```
