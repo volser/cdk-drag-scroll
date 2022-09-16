@@ -1,6 +1,6 @@
 {
   "name": "@cactusoft-ca/cdk-drag-scroll",
-  "version": "13.0.0",
+  "version": "13.0.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cactusoft-ca/cdk-drag-scroll.git"

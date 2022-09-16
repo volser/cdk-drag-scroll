@@ -48,7 +48,7 @@ In the _./projects/cdk-drag-scroll_ folder, run
 ng build cdk-drag-scroll --configuration production
 ```
 
-Finally, run from the dist/<project-name>
+Finally, run from the _dist/cdk-drag-scroll_ folder
 
 ```
 npm publish

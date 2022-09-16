@@ -179,5 +179,8 @@
       }
     }
   },
-  "defaultProject": "cdk-drag-scroll-app"
+  "defaultProject": "cdk-drag-scroll-app",
+  "cli": {
+    "analytics": "3acb13a0-8c39-42a1-8f67-4a63c4646271"
+  }
 }
