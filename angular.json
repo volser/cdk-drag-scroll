@@ -17,6 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/cdk-drag-scroll-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -42,7 +43,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
@@ -53,6 +53,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -141,12 +145,17 @@
       "prefix": "vs",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/cdk-drag-scroll/tsconfig.lib.json",
             "project": "projects/cdk-drag-scroll/ng-package.json"
           }
-        },
+        ,          "configurations": {
+            "production": {
+              "tsConfig": "projects/cdk-drag-scroll/tsconfig.lib.prod.json"
+            }
+          }
+},
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -170,5 +179,8 @@
       }
     }
   },
-  "defaultProject": "cdk-drag-scroll-app"
+  "defaultProject": "cdk-drag-scroll-app",
+  "cli": {
+    "analytics": "3acb13a0-8c39-42a1-8f67-4a63c4646271"
+  }
 }
